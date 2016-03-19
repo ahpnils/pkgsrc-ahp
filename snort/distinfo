@@ -1,0 +1,6 @@
+$NetBSD: distinfo,v 1.48 2013/02/22 12:05:34 jperkin Exp $
+
+SHA1 (snort-2.9.8.0.tar.gz) = f5c1e279d7199d2d74b5d8abd28ca7751a15e8d2
+RMD160 (snort-2.9.8.0.tar.gz) = fdec75f2b9c7f83129ae864ff761118663109f7e
+SHA512 (snort-2.9.8.0.tar.gz) = 46e5f19be5eccad2d5b4d3d55ce42fe616cd5f605b7178ed98e86cc8f2f4cf0f796fad80033d81b71bea7da2abfb6d0b340815ee158190f9b974f671045bf002
+Size (snort-2.9.8.0.tar.gz) = 6323095 bytes
