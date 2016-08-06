@@ -10,7 +10,7 @@ HOMEPAGE=		http://www.snort.org/
 COMMENT=		The Open Source Network Intrusion Detection System
 LICENSE=		gnu-gpl-v2
 
-DEPENDS+=		daq>=2.0.0:../../ahp/daq
+DEPENDS+=		daq>=2.0.0:../../wip/daq
 
 CONFLICTS+=		snort-mysql-[0-9]*
 CONFLICTS+=		snort-pgsql-[0-9]*
@@ -57,25 +57,15 @@ CONF_FILES+=		${EGDIR}/unicode.map \
 SUBST_CLASSES+=		paths
 SUBST_STAGE.paths=	post-patch
 SUBST_FILES.paths=	etc/snort.conf src/snort.c
-SUBST_SED.paths=	-e "s|@PREFIX@|${PREFIX}|g"
-SUBST_SED.paths+=	-e "s|@PKG_SYSCONFDIR@|${PKG_SYSCONFDIR}|g"
+SUBST_SED.paths=	-e "s|/usr/local|${PREFIX}|g"
+SUBST_SED.paths+=	-e "s|/etc|${PKG_SYSCONFDIR}|g"
 SUBST_MESSAGE.paths=	Fixing paths.
 
-SUBST_CLASSES+=		installp
-SUBST_STAGE.installp=	post-extract
-SUBST_FILES.installp=	src/dynamic-preprocessors/ssl/Makefile.in
-SUBST_SED.installp=	-e "s|@INSTALL@|${INSTALL} -c|g"
-SUBST_MESSAGE.installp=	Fixing INSTALL options.
-
-SUBST_CLASSES+=		install
-SUBST_STAGE.install=	post-configure
-SUBST_FILES.install=	src/dynamic-preprocessors/ftptelnet/Makefile
-SUBST_FILES.install+=	src/dynamic-preprocessors/smtp/Makefile
-SUBST_FILES.install+=	src/dynamic-preprocessors/ssh/Makefile
-SUBST_FILES.install+=	src/dynamic-preprocessors/dcerpc/Makefile
-SUBST_FILES.install+=	src/dynamic-preprocessors/dns/Makefile
-SUBST_SED.install=	-e "s|-o root -g wheel||g"
-SUBST_MESSAGE.install=	Fixing install scripts.
+#SUBST_CLASSES+=		installp
+#SUBST_STAGE.installp=	post-extract
+#SUBST_FILES.installp=	src/dynamic-preprocessors/ssl/Makefile.in
+#SUBST_SED.installp=	-e "s|/usr/bin/install|${INSTALL} -c|g"
+#SUBST_MESSAGE.installp=	Fixing INSTALL options.
 
 .include "options.mk"
 

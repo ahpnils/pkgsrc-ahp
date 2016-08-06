@@ -3,9 +3,7 @@
 COMMENT=	AHP pkgsrc packages
 
 #SUBDIR+=	.git # to silence pkglint
-SUBDIR+=	daq
 SUBDIR+=	dibbler
-SUBDIR+=	go-scw
 SUBDIR+=	sailor
 SUBDIR+=	snort
 SUBDIR+=	snort-rules
