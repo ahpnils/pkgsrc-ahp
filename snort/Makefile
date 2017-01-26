@@ -1,7 +1,7 @@
 # $NetBSD: Makefile,v 1.52 2015/08/23 14:30:40 wiz Exp $
 #
 
-DISTNAME=		snort-2.9.8.2
+DISTNAME=		snort-2.9.8.3
 CATEGORIES=		net security
 MASTER_SITES=		https://www.snort.org/downloads/archive/snort/
 
@@ -59,13 +59,16 @@ SUBST_STAGE.paths=	post-patch
 SUBST_FILES.paths=	etc/snort.conf src/snort.c
 SUBST_SED.paths=	-e "s|/usr/local|${PREFIX}|g"
 SUBST_SED.paths+=	-e "s|/etc|${PKG_SYSCONFDIR}|g"
+SUBST_SED.paths+=	-e "s|../rules|${PREFIX}/share/snort/rules|g"
+SUBST_SED.paths+=	-e "s|../so_rules|${PREFIX}/share/snort/so_rules|g"
+SUBST_SED.paths+=	-e "s|../preproc_rules|${PREFIX}/share/snort/preproc_rules|g"
 SUBST_MESSAGE.paths=	Fixing paths.
 
-#SUBST_CLASSES+=		installp
-#SUBST_STAGE.installp=	post-extract
-#SUBST_FILES.installp=	src/dynamic-preprocessors/ssl/Makefile.in
-#SUBST_SED.installp=	-e "s|/usr/bin/install|${INSTALL} -c|g"
-#SUBST_MESSAGE.installp=	Fixing INSTALL options.
+SUBST_CLASSES+=		installp
+SUBST_STAGE.installp=	post-extract
+SUBST_FILES.installp=	src/dynamic-preprocessors/Makefile.in
+SUBST_SED.installp=	-e "s|exec_prefix)|exec_prefix)/share/snort|g"
+SUBST_MESSAGE.installp=	Fixing preprocessors install path.
 
 .include "options.mk"
 
@@ -96,7 +99,7 @@ post-install:
 
 	#${INSTALL_DATA} ${WRKSRC}/schemas/create_* ${DESTDIR}${PREFIX}/share/doc/snort/schemas
 
-.include "../../ahp/daq/buildlink3.mk"
+.include "../../wip/daq/buildlink3.mk"
 .include "../../net/libdnet/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
