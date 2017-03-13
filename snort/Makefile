@@ -73,8 +73,13 @@ SUBST_MESSAGE.installp=	Fixing preprocessors install path.
 .include "options.mk"
 
 CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
+CONFIGURE_ARGS+=	--disable-static-daq
+CONFIGURE_ARGS+=	--enable-sourcefire
+CONFIGURE_ARGS+=	--with-daq-includes=${BUILDLINK_PREFIX.daq}/include
+CONFIGURE_ARGS+=	--with-daq-libraries=${BUILDLINK_PREFIX.daq}/lib
 CONFIGURE_ARGS+=	--with-libpcap-includes=${BUILDLINK_PREFIX.libpcap}/include
 CONFIGURE_ARGS+=	--with-libpcap-libraries=${BUILDLINK_PREFIX.libpcap}/lib
+CONFIGURE_ARGS+=	--disable-so_with_static_lib
 
 pre-build:
 	${CP} ${WRKSRC}/etc/snort.conf ${WRKSRC}/etc/snort.conf.default

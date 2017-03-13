@@ -13,7 +13,7 @@ rcvar=$name
 command="@PREFIX@/bin/${name}"
 confdir="@PKG_SYSCONFDIR@"
 required_files="$confdir/snort.conf $confdir/classification.config $confdir/reference.config"
-command_args="-u @SNORT_USER@ -g @SNORT_GROUP@ -o -d -D -l /var/log/snort -c $confdir/snort.conf"
+command_args="-u @SNORT_USER@ -g @SNORT_GROUP@ --daq-dir=@PREFIX@/lib/daq/ -d -D -l /var/log/snort -c $confdir/snort.conf"
 
 load_rc_config $name
 run_rc_command "$1"
