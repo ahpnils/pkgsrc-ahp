@@ -5,6 +5,7 @@ COMMENT=	AHP pkgsrc packages
 #SUBDIR+=	.git # to silence pkglint
 SUBDIR+=	dibbler
 SUBDIR+=	pulledpork
+SUBDIR+=	py-fedmsg
 SUBDIR+=	sailor
 
 ${.CURDIR}/PKGDB:
