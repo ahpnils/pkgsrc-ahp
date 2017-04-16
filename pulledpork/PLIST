@@ -1,0 +1,15 @@
+@comment $NetBSD$
+bin/oink-code
+bin/pulledpork
+share/doc/pulledpork/LICENSE
+share/doc/pulledpork/README.CATEGORIES
+share/doc/pulledpork/README.CHANGES
+share/doc/pulledpork/README.RULESET
+share/doc/pulledpork/README.SHAREDOBJECTS
+share/doc/pulledpork/README.md
+share/examples/pulledpork/disablesid.conf
+share/examples/pulledpork/dropsid.conf
+share/examples/pulledpork/enablesid.conf
+share/examples/pulledpork/modifysid.conf
+share/examples/pulledpork/pulledpork.conf
+@pkgdir etc/pulledpork
