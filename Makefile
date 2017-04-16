@@ -4,10 +4,8 @@ COMMENT=	AHP pkgsrc packages
 
 #SUBDIR+=	.git # to silence pkglint
 SUBDIR+=	dibbler
+SUBDIR+=	pulledpork
 SUBDIR+=	sailor
-SUBDIR+=	snort
-SUBDIR+=	snort-rules
-SUBDIR+=	yara
 
 ${.CURDIR}/PKGDB:
 	${RM} -f ${.CURDIR}/PKGDB
