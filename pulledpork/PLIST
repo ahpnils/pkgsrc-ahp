@@ -1,5 +1,4 @@
 @comment $NetBSD$
-bin/oink-code
 bin/pulledpork
 share/doc/pulledpork/LICENSE
 share/doc/pulledpork/README.CATEGORIES
@@ -12,4 +11,6 @@ share/examples/pulledpork/dropsid.conf
 share/examples/pulledpork/enablesid.conf
 share/examples/pulledpork/modifysid.conf
 share/examples/pulledpork/pulledpork.conf
+share/pulledpork/oink-conv.pl
+@pkgdir share/pulledpork/contrib
 @pkgdir etc/pulledpork

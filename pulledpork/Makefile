@@ -15,6 +15,7 @@ USE_TOOLS+=	perl:run
 REPLACE_PERL+=	pulledpork.pl
 REPLACE_PERL+=	contrib/oink-conv.pl
 WRKSRC=		${WRKDIR}/pulledpork-${PKGVERSION_NOREV}
+BUILD_DEFS+=	VARBASE
 
 # File/Find.pm is a part of lang/perl5
 # File/Basename.pm is a part of lang/perl5
@@ -38,6 +39,7 @@ EGDIR=			${PREFIX}/share/examples/pulledpork
 PKG_SYSCONFSUBDIR=	pulledpork
 DOCDIR=			share/doc/pulledpork
 INSTALLATION_DIRS+=	${EGDIR} ${PKG_SYSCONFDIR} ${OWN_DIRS} ${DOCDIR} bin
+INSTALLATION_DIRS+=	share/pulledpork/contrib
 AUTO_MKDIRS=		yes
 USE_LANGUAGES=		# none
 
@@ -52,9 +54,16 @@ CONF_FILES+=	${EGDIR}/modifysid.conf \
 CONF_FILES+=	${EGDIR}/pulledpork.conf \
 		${PKG_SYSCONFDIR}/pulledpork.conf
 
+SUBST_CLASSES+=		install
+SUBST_STAGE.install=	pre-install
+SUBST_MESSAGE.install=	correcting installation path
+SUBST_FILES.install=	${WRKSRC}/etc/pulledpork.conf
+SUBST_SED.install=	-e 's,/usr/local,${PREFIX},g'
+SUBST_SED.install+=	-e 's,/var,${VARBASE},g'
+
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/pulledpork.pl ${DESTDIR}${PREFIX}/bin/pulledpork
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/oink-conv.pl ${DESTDIR}${PREFIX}/bin/oink-code
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/oink-conv.pl ${DESTDIR}${PREFIX}/share/pulledpork/
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DESTDIR}${PREFIX}/share/doc/pulledpork/
 	${INSTALL_DATA} ${WRKSRC}/README.md ${DESTDIR}${PREFIX}/share/doc/pulledpork/
 	${INSTALL_DATA} ${WRKSRC}/doc/README.* ${DESTDIR}${PREFIX}/share/doc/pulledpork/
